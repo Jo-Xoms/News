@@ -2,11 +2,11 @@
 .header{
   display: flex;
   width: 100%;
-  padding: 12px 24px;
+  padding: 12px 40px;
   background-color: white;
   border-bottom: 1px solid #F2f4F5;
   flex-direction: column;
-  gap: 12px;
+  gap: 3px;
 }
 
 .title {
@@ -16,4 +16,13 @@
 
 .date {
   font-size: 16px;
+  
+}
+
+.icon{
+  padding-right: 5px;
+  width: 20px;
+  height: 20px;
+  margin-bottom: -4px;
+
 }
