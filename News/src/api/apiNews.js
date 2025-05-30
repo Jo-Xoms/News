@@ -1,30 +1,32 @@
 import axios from "axios";
 
-const BASE_URL = import.meta.env.VITE_NEWS_BASE_API_URL;
 const API_KEY = import.meta.env.VITE_NEWS_API_KEY;
 
-export const getNews = async () => {
+export const getNews = async (page_number = 1, page_size = 10) => {
   try {
-    if (!BASE_URL || !API_KEY) {
-      throw new Error("API config is missing. Check .env file.");
+    if (!API_KEY) {
+      throw new Error("API_KEY is missing");
     }
 
-    const response = await axios.get(`${BASE_URL}latest-news`, {
+    const response = await axios.get("/api/news", {
       headers: {
         Accept: "application/json",
       },
       params: {
         apiKey: API_KEY,
+        page_number,
+        page_size,
       },
     });
 
     if (!response.data || !Array.isArray(response.data.news)) {
-      throw new Error("Unexpected API response format");
+      console.error("Unexpected API response format:", response.data);
+      return { news: [] };
     }
 
     return response.data;
   } catch (error) {
-    console.error("API fetch error:", error.message);
+    console.error("API fetch error:", error.message || error);
     return { news: [] };
   }
 };

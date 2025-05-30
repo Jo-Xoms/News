@@ -4,29 +4,34 @@ import { useEffect, useState } from "react";
 import { getNews } from "../../api/apiNews";
 import NewsList from "../../components/NewsList/NewsList";
 import Skeleton from "../../components/Skeleton/Skeleton";
+import Pagination from "../../components/Pagination/Pagination";
 
 const Main = () => {
   const [news, setNews] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
+  const totalPage = 5;
+  const pageSize = 10;
+
+  const fetchNews = async (page) => {
+    setIsLoading(true);
+    try {
+      const response = await getNews(page, pageSize);
+      console.log("API response:", response);
+
+      const articles = Array.isArray(response?.news) ? response.news : [];
+      setNews(articles);
+    } catch (error) {
+      console.error("Ошибка при загрузке новостей:", error);
+      setNews([]);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   useEffect(() => {
-    const fetchNews = async () => {
-      try {
-        const response = await getNews();
-        console.log("API response:", response);
-
-        const articles = Array.isArray(response?.news) ? response.news : [];
-        setNews(articles);
-      } catch (error) {
-        console.error("Ошибка при загрузке новостей:", error);
-        setNews([]);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    fetchNews();
-  }, []);
+    fetchNews(currentPage);
+  }, [currentPage]);
 
   return (
     <main className={styles.main}>
@@ -37,7 +42,7 @@ const Main = () => {
       ) : (
         <p>Нет доступных новостей.</p>
       )}
-
+      <Pagination totalPage={totalPage} onPageChange={setCurrentPage} />{" "}
       {isLoading ? (
         <Skeleton count={5} type="card" />
       ) : news.length > 0 ? (
