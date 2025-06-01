@@ -1,0 +1,47 @@
+.scrollWrapper {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.filterContainer {
+  display: inline-flex;
+  
+  gap: 8px;
+  padding: 8px;
+  white-space: nowrap;
+}
+
+.tabButton {
+  padding: 14px 28px;
+  border: none;
+  border-radius: 9999px;
+  background-color: #f5f5f5;
+  color: #333;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.3s, color 0.3s;
+  flex-shrink: 0;
+}
+
+.tabButton:hover {
+  background-color: #e0e0e0;
+}
+
+.active {
+  background-color: #ececff;
+  color: #6a5acd;
+  font-weight: 600;
+}
+
+.articles {
+  margin-top: 20px;
+}
+
+.article {
+  border-bottom: 1px solid #ddd;
+  padding: 12px 0;
+}
+
+.article h3 {
+  margin: 0 0 6px;
+}
