@@ -2,20 +2,23 @@ import axios from "axios";
 
 const API_KEY = import.meta.env.VITE_NEWS_API_KEY;
 
-export const getNews = async (page_number = 1, page_size = 10) => {
+export const getNews = async (
+  page_number = 1,
+  page_size = 10,
+  category = "World",
+  keywords = ""
+) => {
   try {
-    if (!API_KEY) {
-      throw new Error("API_KEY is missing");
-    }
+    if (!API_KEY) throw new Error("API_KEY is missing");
 
     const response = await axios.get("/api/news", {
-      headers: {
-        Accept: "application/json",
-      },
+      headers: { Accept: "application/json" },
       params: {
         apiKey: API_KEY,
         page_number,
         page_size,
+        category,
+        keywords,
       },
     });
 
