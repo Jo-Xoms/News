@@ -15,13 +15,15 @@ const Header = () => {
       <header className={styles.header}>
         <div className={styles.topRow}>
           <h1 className={styles.title}>Pulse Today</h1>
-          <div className={styles.weather}>
-            <WeatherWidget />
-          </div>
+          <div className={styles.fone}>
+            <div className={styles.weather}>
+              <WeatherWidget />
+            </div>
 
-          <button className={styles.customBurgerButton} onClick={toggleMenu}>
-            <GiHamburgerMenu size={28} />
-          </button>
+            <button className={styles.customBurgerButton} onClick={toggleMenu}>
+              <GiHamburgerMenu size={28} />
+            </button>
+          </div>
         </div>
 
         <p className={styles.date}>

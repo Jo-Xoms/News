@@ -4,6 +4,7 @@ const Filter = ({ activeTab, setActiveTab }) => {
   const tabs = [
     "World",
     "U.S.",
+    "China",
     "Politics",
     "Tech",
     "Science",
