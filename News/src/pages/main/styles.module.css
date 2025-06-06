@@ -10,3 +10,13 @@
   grid-template-columns: 1fr ;
   }
 }
+
+.hideOnMobile {
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .hideOnMobile {
+    display: none;
+  }
+}

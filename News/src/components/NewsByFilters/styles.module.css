@@ -1,8 +1,18 @@
-.section{
+.section {
   display: flex;
-  overflow: hidden;
-  box-sizing: border-box;
   flex-direction: column;
   width: 100%;
   gap: 32px;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.hideOnMobile {
+  display: block;
+}
+
+@media (min-width: 768px) {
+  .hideOnMobile {
+    display: none;
+  }
 }

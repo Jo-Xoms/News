@@ -31,7 +31,9 @@ const Main = () => {
 
   return (
     <main className={styles.main}>
-      <LatestNews banners={news.slice(0, 3)} isLoading={isLoading} />
+      <div className={styles.hideOnMobile}>
+        <LatestNews banners={news.slice(0, 9)} isLoading={isLoading} />
+      </div>
       <NewsByFilters />
     </main>
   );

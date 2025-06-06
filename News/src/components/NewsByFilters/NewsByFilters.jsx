@@ -6,9 +6,9 @@ import Skeleton from "../../components/Skeleton/Skeleton";
 import Pagination from "../../components/Pagination/Pagination";
 import Filter from "../../components/Filter/Filter";
 import Search from "../../components/Search/Search";
-import LatestNews from "../../components/LatestNews/LatestNews";
+
 import { getNews } from "../../api/apiNews";
-import { useDebounce } from "../../helpers/hooks/useDebounts.js";
+import { useDebounce } from "../../helpers/hooks/useDebounts";
 
 const NewsByFilters = () => {
   const [news, setNews] = useState([]);
@@ -51,12 +51,11 @@ const NewsByFilters = () => {
       <Search keywords={keywords} setKeywords={setKeywords} />
 
       {isLoading ? (
-        <Skeleton count={1} type="banner" />
+        <Skeleton count={9} type="banner" />
       ) : news.length > 0 ? (
-        <>
+        <div className={styles.hideOnMobile}>
           <Banner item={news[0]} />
-          <LatestNews banners={news.slice(1, 4)} isLoading={isLoading} />
-        </>
+        </div>
       ) : (
         <p>Нет доступных новостей.</p>
       )}
@@ -64,7 +63,7 @@ const NewsByFilters = () => {
       <Pagination totalPage={totalPage} onPageChange={setCurrentPage} />
 
       {isLoading ? (
-        <Skeleton count={5} type="card" />
+        <Skeleton count={9} type="card" />
       ) : news.length > 0 ? (
         <NewsList news={news} />
       ) : null}

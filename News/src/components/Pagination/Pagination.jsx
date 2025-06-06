@@ -1,16 +1,13 @@
 import { useState, useEffect } from "react";
 import styles from "./styles.module.css";
 
-const Pagination = ({ totalPage = 1, onPageChange = () => {} }) => {
-  const [currentPage, setCurrentPage] = useState(1);
-
-  useEffect(() => {
-    onPageChange(currentPage);
-  }, [currentPage]);
-
+const Pagination = ({
+  totalPage = 1,
+  onPageChange = () => {},
+  currentPage = 1,
+}) => {
   const handleClick = (page) => {
     if (page !== currentPage) {
-      setCurrentPage(page);
       onPageChange(page);
     }
   };

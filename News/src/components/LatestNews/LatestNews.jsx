@@ -5,8 +5,13 @@ import styles from "./styles.module.css";
 const LatestNews = ({ banners, isLoading }) => {
   return (
     <section className={styles.section}>
+      <h2 className={styles.title}>Последние новости</h2>
       {isLoading ? (
-        <Skeleton type="banner" count={10} />
+        <div className={styles.grid}>
+          {Array.from({ length: 9 }).map((_, i) => (
+            <Skeleton key={i} type="banner" />
+          ))}
+        </div>
       ) : (
         <BannersList banners={banners} />
       )}
